@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:go_router/go_router.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -7,9 +8,15 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(255,245,222,179),
       // AppBar
       appBar: AppBar(
-        title: const Text('Ana Sayfa'),
+        title: const Text('Ana Sayfa',
+        style: TextStyle(
+         color: Color.fromARGB(250, 139, 69, 19),
+        ),
+       ),
+
         actions: [
           IconButton(
             icon: const Icon(CupertinoIcons.bell),
@@ -25,20 +32,20 @@ class HomeScreen extends StatelessWidget {
             // Drawer Header
             Container(
               height: 200,
-              color: Colors.blue,
+              color: Colors.white,
               child: const Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Icon(
                     CupertinoIcons.person_circle,
-                    size: 80,
-                    color: Colors.white,
+                    size: 100,
+                    color: Colors.black,
                   ),
                   SizedBox(height: 10),
                   Text(
                     'Kullanıcı Adı',
                     style: TextStyle(
-                      color: Colors.white,
+                      color: Colors.black,
                       fontSize: 18,
                     ),
                   ),
@@ -52,6 +59,27 @@ class HomeScreen extends StatelessWidget {
               onTap: () {
                 Navigator.pop(context);
               },
+            ),
+            ListTile(
+              leading: const Icon(CupertinoIcons.profile_circled),
+              title: const Text('Profil'),
+              onTap: () {
+                context.go('/profile');
+              },
+            ),
+            ListTile(
+              leading: const Icon(CupertinoIcons.archivebox),
+              title: const Text('Kaydedilenler'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+             leading: const Icon(CupertinoIcons.arrow_down_to_line_alt),
+             title: const Text('İndirilenler'),
+             onTap: () {
+              Navigator.pop(context);
+             },
             ),
             ListTile(
               leading: const Icon(CupertinoIcons.settings),
@@ -70,7 +98,11 @@ class HomeScreen extends StatelessWidget {
           Expanded(
             child: Container(
               padding: const EdgeInsets.all(16),
-              child: const Text('Ana Sayfa İçeriği'),
+              child: const Text('Ana Sayfa İçeriği',
+                style: TextStyle(
+                  color: Color.fromARGB(250, 139, 69, 19),
+                ),
+              ),
             ),
           ),
         ],
@@ -85,13 +117,16 @@ class HomeScreen extends StatelessWidget {
           ),
           BottomNavigationBarItem(
             icon: Icon(CupertinoIcons.search),
-            label: 'Keşfet',
+            label: 'Aratma',
           ),
           BottomNavigationBarItem(
             icon: Icon(CupertinoIcons.person),
             label: 'Profil',
           ),
         ],
+        currentIndex: 0,
+        selectedItemColor: Colors.black ,
+        backgroundColor: Color.fromARGB(255,245,222,179) ,
         onTap: (index) {
           // Navigasyon işlemleri buraya gelecek
         },
